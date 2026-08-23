@@ -4,170 +4,561 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>V-LORA | Catálogo</title>
+    <title>V-LORA | Licores & Experiencias</title>
 
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
-            background: #0b0b0b;
-            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f5f0e7;
+            color: #26352c;
+            line-height: 1.6;
         }
 
+        /* =========================
+           NAVEGACIÓN
+        ========================= */
+
         header {
-            background: #111;
-            padding: 20px 8%;
+            background: #f5f0e7;
+            padding: 22px 7%;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #333;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #ddd4c5;
         }
 
         .logo {
-            font-size: 26px;
-            font-weight: bold;
-            color: #d4af37;
+            font-size: 30px;
+            font-weight: 900;
+            letter-spacing: 4px;
+            color: #304c3b;
+        }
+
+        .logo span {
+            color: #b9674b;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
         }
 
         nav a {
-            color: white;
+            color: #304c3b;
             text-decoration: none;
-            margin-left: 25px;
+            font-size: 14px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
         }
 
         nav a:hover {
-            color: #d4af37;
+            color: #b9674b;
         }
+
+        /* =========================
+           HERO
+        ========================= */
 
         .hero {
-            min-height: 75vh;
-            display: flex;
+            min-height: 88vh;
+            padding: 70px 7%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px 20px;
-            background:
-                linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.85)),
-                radial-gradient(circle, #493d16, #050505 70%);
         }
 
-        .hero-content {
-            max-width: 800px;
+        .hero-text {
+            max-width: 600px;
+        }
+
+        .small-title {
+            color: #b9674b;
+            font-size: 14px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
         }
 
         .hero h1 {
-            font-size: 60px;
-            margin-bottom: 20px;
-            color: #d4af37;
+            font-family: Georgia, serif;
+            font-size: clamp(60px, 8vw, 110px);
+            line-height: 0.9;
+            color: #304c3b;
+            margin-bottom: 30px;
+        }
+
+        .hero h1 span {
+            color: #b9674b;
+            font-style: italic;
         }
 
         .hero p {
-            font-size: 20px;
-            color: #ddd;
-            line-height: 1.6;
+            font-size: 19px;
+            color: #59635b;
+            max-width: 500px;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
         }
 
         .btn {
             display: inline-block;
-            margin-top: 30px;
-            padding: 14px 30px;
-            background: #d4af37;
-            color: #111;
+            padding: 15px 28px;
             text-decoration: none;
+            border-radius: 30px;
             font-weight: bold;
-            border-radius: 8px;
+            transition: 0.3s;
         }
 
-        .section {
-            padding: 70px 8%;
+        .btn-primary {
+            background: #304c3b;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1f3428;
+            transform: translateY(-3px);
+        }
+
+        .btn-secondary {
+            border: 2px solid #304c3b;
+            color: #304c3b;
+        }
+
+        .btn-secondary:hover {
+            background: #304c3b;
+            color: white;
+        }
+
+        /* =========================
+           IMAGEN HERO
+        ========================= */
+
+        .hero-image {
+            height: 600px;
+            border-radius: 180px 180px 25px 25px;
+            background:
+                linear-gradient(
+                    rgba(48, 76, 59, 0.12),
+                    rgba(48, 76, 59, 0.12)
+                ),
+                url("https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=1000&q=80");
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-label {
+            position: absolute;
+            bottom: 25px;
+            left: 25px;
+            right: 25px;
+            background: rgba(245, 240, 231, 0.93);
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .hero-label strong {
+            display: block;
+            color: #304c3b;
+            font-size: 18px;
+        }
+
+        .hero-label span {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* =========================
+           CATEGORÍAS
+        ========================= */
+
+        .categories {
+            background: #304c3b;
+            color: white;
+            padding: 90px 7%;
+        }
+
+        .section-title {
             text-align: center;
+            margin-bottom: 50px;
         }
 
-        .section h2 {
-            font-size: 38px;
-            color: #d4af37;
-            margin-bottom: 15px;
+        .section-title small {
+            color: #d99a7e;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: bold;
         }
 
-        .section-intro {
-            color: #bbb;
-            max-width: 700px;
-            margin: auto;
-            line-height: 1.6;
+        .section-title h2 {
+            font-family: Georgia, serif;
+            font-size: 48px;
+            font-weight: normal;
+            margin-top: 10px;
         }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .category {
+            min-height: 220px;
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: 0.3s;
+        }
+
+        .category:hover {
+            background: #3b5c48;
+            transform: translateY(-8px);
+        }
+
+        .category-number {
+            font-size: 14px;
+            color: #d99a7e;
+            margin-bottom: auto;
+        }
+
+        .category h3 {
+            font-family: Georgia, serif;
+            font-size: 27px;
+            margin-bottom: 8px;
+        }
+
+        .category p {
+            font-size: 14px;
+            opacity: 0.75;
+        }
+
+        /* =========================
+           PRODUCTOS
+        ========================= */
 
         .products {
-            margin-top: 40px;
+            padding: 100px 7%;
+        }
+
+        .products-intro {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 45px;
+        }
+
+        .products-intro h2 {
+            font-family: Georgia, serif;
+            font-size: 52px;
+            font-weight: normal;
+            color: #304c3b;
+        }
+
+        .products-intro p {
+            max-width: 400px;
+            color: #697169;
+        }
+
+        .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
         }
 
-        .card {
-            background: #151515;
-            border: 1px solid #292929;
-            border-radius: 15px;
-            padding: 30px 20px;
-            transition: .3s;
+        .product-card {
+            background: #fffdf9;
+            border: 1px solid #ded7ca;
+            padding: 15px;
+            transition: 0.3s;
         }
 
-        .card:hover {
-            transform: translateY(-7px);
-            border-color: #d4af37;
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(48,76,59,0.12);
         }
 
-        .icon {
-            font-size: 55px;
+        .product-image {
+            height: 340px;
+            background-size: cover;
+            background-position: center;
             margin-bottom: 20px;
         }
 
-        .card h3 {
-            color: #d4af37;
-            margin-bottom: 12px;
+        .image-one {
+            background-image: url("https://images.unsplash.com/photo-1551024709-8f23befc6f87?auto=format&fit=crop&w=800&q=80");
         }
 
-        .card p {
-            color: #aaa;
-            line-height: 1.5;
+        .image-two {
+            background-image: url("https://images.unsplash.com/photo-1569529465841-dfecdab7503b?auto=format&fit=crop&w=800&q=80");
         }
+
+        .image-three {
+            background-image: url("https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=800&q=80");
+        }
+
+        .product-info {
+            padding: 5px 10px 15px;
+        }
+
+        .product-info small {
+            color: #b9674b;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .product-info h3 {
+            font-family: Georgia, serif;
+            color: #304c3b;
+            font-size: 26px;
+            margin: 7px 0;
+        }
+
+        .product-info p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* =========================
+           SOBRE NOSOTROS
+        ========================= */
 
         .about {
-            background: #111;
+            background: #e5dfd2;
+            padding: 100px 7%;
         }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            min-height: 520px;
+            background:
+                url("https://images.unsplash.com/photo-1527281400683-1aae777175f8?auto=format&fit=crop&w=1000&q=80");
+            background-size: cover;
+            background-position: center;
+        }
+
+        .about-text small {
+            color: #b9674b;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        .about-text h2 {
+            font-family: Georgia, serif;
+            font-size: 55px;
+            line-height: 1;
+            color: #304c3b;
+            margin: 18px 0 25px;
+        }
+
+        .about-text p {
+            color: #59635b;
+            margin-bottom: 18px;
+            font-size: 17px;
+        }
+
+        /* =========================
+           FRASE
+        ========================= */
+
+        .quote {
+            padding: 100px 10%;
+            text-align: center;
+            background: #b9674b;
+            color: white;
+        }
+
+        .quote p {
+            font-family: Georgia, serif;
+            font-size: clamp(30px, 4vw, 55px);
+            line-height: 1.2;
+        }
+
+        .quote span {
+            display: block;
+            margin-top: 25px;
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* =========================
+           CONTACTO
+        ========================= */
 
         .contact {
-            background: #080808;
+            padding: 100px 7%;
+            text-align: center;
         }
+
+        .contact h2 {
+            font-family: Georgia, serif;
+            font-size: 55px;
+            color: #304c3b;
+            margin-bottom: 15px;
+        }
+
+        .contact p {
+            color: #687069;
+            max-width: 550px;
+            margin: 0 auto 35px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: #304c3b;
+            margin-bottom: 5px;
+        }
+
+        .contact-item span {
+            color: #777;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
 
         footer {
-            text-align: center;
-            padding: 30px;
-            background: #050505;
-            color: #777;
-            border-top: 1px solid #222;
+            background: #263b2e;
+            color: white;
+            padding: 45px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
-        footer strong {
-            color: #d4af37;
+        footer .footer-logo {
+            font-size: 25px;
+            font-weight: bold;
+            letter-spacing: 4px;
         }
 
-        @media (max-width: 700px) {
+        footer p {
+            opacity: 0.65;
+            font-size: 13px;
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================= */
+
+        @media (max-width: 900px) {
+
             header {
                 flex-direction: column;
                 gap: 15px;
             }
 
-            nav a {
-                margin: 0 8px;
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding-top: 50px;
+            }
+
+            .hero-image {
+                height: 450px;
+            }
+
+            .category-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .logo {
+                font-size: 25px;
             }
 
             .hero h1 {
+                font-size: 65px;
+            }
+
+            .hero-image {
+                height: 400px;
+                border-radius: 100px 100px 20px 20px;
+            }
+
+            .category-grid,
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .products-intro {
+                display: block;
+            }
+
+            .products-intro h2,
+            .about-text h2,
+            .contact h2 {
                 font-size: 42px;
+                margin-bottom: 20px;
+            }
+
+            .about-image {
+                min-height: 400px;
+            }
+
+            footer {
+                text-align: center;
+                justify-content: center;
             }
         }
     </style>
@@ -175,124 +566,308 @@
 
 <body>
 
-<header>
-    <div class="logo">V-LORA</div>
+    <!-- NAVEGACIÓN -->
 
-    <nav>
-        <a href="#inicio">Inicio</a>
-        <a href="#catalogo">Catálogo</a>
-        <a href="#nosotros">Nosotros</a>
-        <a href="#contacto">Contacto</a>
-    </nav>
-</header>
+    <header>
+        <div class="logo">
+            V<span>-</span>LORA
+        </div>
+
+        <nav>
+            <a href="#inicio">Inicio</a>
+            <a href="#categorias">Categorías</a>
+            <a href="#productos">Productos</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#contacto">Contacto</a>
+        </nav>
+    </header>
 
 
-<section class="hero" id="inicio">
-    <div class="hero-content">
+    <!-- PORTADA -->
 
-        <h1>V-LORA</h1>
+    <section class="hero" id="inicio">
+
+        <div class="hero-text">
+
+            <div class="small-title">
+                Licores & experiencias
+            </div>
+
+            <h1>
+                V-LORA
+                <br>
+                <span>brinda</span>
+                diferente.
+            </h1>
+
+            <p>
+                Descubre una selección de bebidas para acompañar
+                tus mejores momentos. Calidad, variedad y una
+                experiencia pensada para disfrutar.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#productos" class="btn btn-primary">
+                    Ver productos
+                </a>
+
+                <a href="#nosotros" class="btn btn-secondary">
+                    Conócenos
+                </a>
+            </div>
+
+        </div>
+
+        <div class="hero-image">
+
+            <div class="hero-label">
+                <strong>Momentos que merecen un brindis.</strong>
+                <span>V-LORA · Licores & experiencias</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CATEGORÍAS -->
+
+    <section class="categories" id="categorias">
+
+        <div class="section-title">
+
+            <small>Explora nuestra selección</small>
+
+            <h2>
+                Encuentra tu favorito
+            </h2>
+
+        </div>
+
+        <div class="category-grid">
+
+            <div class="category">
+                <div class="category-number">01</div>
+                <h3>Vinos</h3>
+                <p>Opciones para cada ocasión.</p>
+            </div>
+
+            <div class="category">
+                <div class="category-number">02</div>
+                <h3>Whisky</h3>
+                <p>Sabores intensos y sofisticados.</p>
+            </div>
+
+            <div class="category">
+                <div class="category-number">03</div>
+                <h3>Vodka</h3>
+                <p>Una selección versátil y moderna.</p>
+            </div>
+
+            <div class="category">
+                <div class="category-number">04</div>
+                <h3>Coctelería</h3>
+                <p>Ingredientes para crear experiencias.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRODUCTOS -->
+
+    <section class="products" id="productos">
+
+        <div class="products-intro">
+
+            <div>
+                <div class="small-title">
+                    Nuestra selección
+                </div>
+
+                <h2>
+                    Productos destacados
+                </h2>
+            </div>
+
+            <p>
+                Una selección pensada para quienes buscan
+                calidad y buenos momentos en cada botella.
+            </p>
+
+        </div>
+
+
+        <div class="product-grid">
+
+            <div class="product-card">
+
+                <div class="product-image image-one"></div>
+
+                <div class="product-info">
+                    <small>Selección V-LORA</small>
+                    <h3>Vinos</h3>
+                    <p>
+                        Descubre diferentes estilos y sabores
+                        para acompañar tus ocasiones especiales.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <div class="product-image image-two"></div>
+
+                <div class="product-info">
+                    <small>Selección V-LORA</small>
+                    <h3>Destilados</h3>
+                    <p>
+                        Una variedad de bebidas para disfrutar
+                        y compartir.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <div class="product-image image-three"></div>
+
+                <div class="product-info">
+                    <small>Selección V-LORA</small>
+                    <h3>Coctelería</h3>
+                    <p>
+                        Todo lo necesario para darle un toque
+                        especial a tus reuniones.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SOBRE NOSOTROS -->
+
+    <section class="about" id="nosotros">
+
+        <div class="about-container">
+
+            <div class="about-image"></div>
+
+            <div class="about-text">
+
+                <small>Sobre V-LORA</small>
+
+                <h2>
+                    Una forma diferente de brindar.
+                </h2>
+
+                <p>
+                    En V-LORA creemos que cada celebración tiene
+                    su propio sabor.
+                </p>
+
+                <p>
+                    Por eso creamos un espacio donde puedes
+                    encontrar una selección de bebidas para
+                    compartir, celebrar y disfrutar.
+                </p>
+
+                <p>
+                    Nuestra propuesta combina variedad,
+                    estilo y una atención cercana para hacer
+                    que cada visita sea especial.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FRASE -->
+
+    <section class="quote">
 
         <p>
-            Descubre nuestra selección y conoce diferentes tipos,
-            estilos y presentaciones de bebidas para ocasiones especiales.
+            “Los mejores momentos comienzan
+            con una buena compañía.”
         </p>
 
-        <a href="#catalogo" class="btn">
-            Ver catálogo
+        <span>
+            V-LORA
+        </span>
+
+    </section>
+
+
+    <!-- CONTACTO -->
+
+    <section class="contact" id="contacto">
+
+        <div class="small-title">
+            Visítanos
+        </div>
+
+        <h2>
+            Hagamos un brindis.
+        </h2>
+
+        <p>
+            ¿Quieres conocer nuestra selección?
+            Escríbenos o visítanos. Estaremos encantados
+            de atenderte.
+        </p>
+
+        <a href="https://wa.me/51999999999"
+           class="btn btn-primary">
+            Contactarnos
         </a>
 
-    </div>
-</section>
 
+        <div class="contact-info">
 
-<section class="section" id="catalogo">
+            <div class="contact-item">
+                <strong>Ubicación</strong>
+                <span>Tu dirección aquí</span>
+            </div>
 
-    <h2>Nuestro Catálogo</h2>
+            <div class="contact-item">
+                <strong>Horario</strong>
+                <span>Lunes - Domingo</span>
+            </div>
 
-    <p class="section-intro">
-        Explora nuestras categorías y conoce las características
-        de diferentes bebidas y productos.
-    </p>
+            <div class="contact-item">
+                <strong>WhatsApp</strong>
+                <span>+51 999 999 999</span>
+            </div>
 
-    <div class="products">
-
-        <div class="card">
-            <div class="icon">🍷</div>
-            <h3>Vinos</h3>
-            <p>
-                Información sobre variedades, estilos y características
-                de diferentes tipos de vino.
-            </p>
         </div>
 
-        <div class="card">
-            <div class="icon">🥃</div>
-            <h3>Destilados</h3>
-            <p>
-                Conoce distintas categorías de bebidas destiladas
-                y sus características generales.
-            </p>
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-logo">
+            V-LORA
         </div>
 
-        <div class="card">
-            <div class="icon">🍾</div>
-            <h3>Espumantes</h3>
-            <p>
-                Una selección informativa sobre diferentes estilos
-                de bebidas espumantes.
-            </p>
-        </div>
+        <p>
+            © 2026 V-LORA. Todos los derechos reservados.
+        </p>
 
-        <div class="card">
-            <div class="icon">🍹</div>
-            <h3>Coctelería</h3>
-            <p>
-                Descubre el mundo de la presentación y cultura
-                de la coctelería.
-            </p>
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="section about" id="nosotros">
-
-    <h2>Sobre Nosotros</h2>
-
-    <p class="section-intro">
-       V-LORA es una licorería moderna creada para ofrecer variedad, calidad y una experiencia diferente.
-    Nos enfocamos en brindar productos seleccionados y una atención cercana, haciendo de cada compra una experiencia especial.
-    </p>
-
-</section>
-
-
-<section class="section contact" id="contacto">
-
-    <h2>Contacto</h2>
-
-    <p class="section-intro">
-        ¿Quieres conocer más sobre nuestra marca?
-        Puedes agregar aquí tus redes sociales y datos de contacto.
-    </p>
-
-    <a href="#inicio" class="btn">
-        Volver arriba
-    </a>
-
-</section>
-
-
-<footer>
-
-    <p>
-        © 2026 <strong>Imperio Drinks</strong>.
-        Sitio informativo.
-    </p>
-
-</footer>
+    </footer>
 
 </body>
 </html>
